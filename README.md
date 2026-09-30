@@ -6,7 +6,7 @@ Report: `Bank_marketing.pdf` · Exploration notebook: `notebooks/Bank_Marketing_
 ## Layout
 
 ```
-data/raw/            bank-additional-full.csv goes here (not tracked in git by default)
+data/raw/            bank-additional-full.csv and bank-additional.csv(not tracked in git by default)
 data/processed/      .npy feature matrices + dataset_metadata.json (generated)
 src/                 all pipeline step scripts
 pipelines/           one runner per lab (chains the scripts in src/)
