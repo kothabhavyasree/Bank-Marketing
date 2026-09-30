@@ -1,0 +1,38 @@
+{
+    "dataset_name": "Bank Marketing (bank-additional-full)",
+    "target": "y",
+    "dropped_features": [
+        "duration"
+    ],
+    "train_shape": [
+        32940,
+        62
+    ],
+    "test_shape": [
+        8236,
+        62
+    ],
+    "numerical_features": [
+        "age",
+        "campaign",
+        "pdays",
+        "previous",
+        "emp.var.rate",
+        "cons.price.idx",
+        "cons.conf.idx",
+        "euribor3m",
+        "nr.employed"
+    ],
+    "categorical_features": [
+        "job",
+        "marital",
+        "education",
+        "default",
+        "housing",
+        "loan",
+        "contact",
+        "month",
+        "day_of_week",
+        "poutcome"
+    ]
+}
