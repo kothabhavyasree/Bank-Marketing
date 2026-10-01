@@ -1,4 +1,4 @@
-# Bank Marketing Campaign Prediction (241FA18059)
+# Bank Marketing Campaign Prediction
 
 Predicts whether a customer will subscribe to a bank term deposit (`y`).
 Report: `Bank_marketing.pdf` · Exploration notebook: `notebooks/Bank_Marketing_Project_Final.ipynb`
