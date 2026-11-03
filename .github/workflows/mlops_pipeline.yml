@@ -1,0 +1,76 @@
+# Lab 13 - End-to-end MLOps pipeline (CI + CT + CD):
+# train -> register -> test -> drift check -> retrain -> monitor -> build & smoke-test the Docker image.
+name: MLOps pipeline - end to end
+
+on:
+  push:
+    branches: [main]
+    paths: ["src/**", "app/**", "pipelines/**", "configs/**", "data/raw/**", "Dockerfile"]
+  schedule:
+    - cron: "30 3 * * 1"      # every Monday 09:00 IST - scheduled retraining check
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    env:
+      MLFLOW_DISABLE_AGENT_HINT: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - run: pip install -r requirements-ci.txt
+
+      - name: Run full lifecycle (Labs 5-8, 10-12)
+        run: python pipelines/run_lab13_end_to_end.py --fresh
+
+      - name: Job summary
+        if: always()
+        run: |
+          echo "## MLOps pipeline results" >> $GITHUB_STEP_SUMMARY
+          python -c "import json;[print(f\"- **{s['status']}** {s['stage']}\") for s in json.load(open('artifacts/end_to_end_summary.json'))]" >> $GITHUB_STEP_SUMMARY
+          python -c "import json;r=json.load(open('artifacts/production_model_report.json'));print(f\"\nProduction model: v{r['model_lineage']['version']} recall={r['performance_metrics']['recall']:.3f}\")" >> $GITHUB_STEP_SUMMARY || true
+
+      - name: Upload model
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-model
+          path: |
+            models/inference_pipeline.pkl
+            models/model_info.json
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlops-reports
+          path: artifacts/
+
+  docker:
+    needs: pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: production-model
+          path: models/
+
+      - name: Build image
+        run: docker build -t bank-marketing-api:${{ github.sha }} .
+
+      - name: Smoke-test container
+        run: |
+          docker run -d --name api -p 8000:8000 bank-marketing-api:${{ github.sha }}
+          for i in $(seq 1 30); do curl -sf localhost:8000/health && break; sleep 1; done
+          curl -sf -X POST localhost:8000/predict -H "Content-Type: application/json" -d '{
+            "age": 35, "job": "services", "marital": "married", "education": "high.school",
+            "default": "unknown", "housing": "no", "loan": "no", "contact": "telephone",
+            "month": "jun", "day_of_week": "wed", "campaign": 2, "pdays": 999, "previous": 0,
+            "poutcome": "nonexistent", "emp.var.rate": 1.4, "cons.price.idx": 94.465,
+            "cons.conf.idx": -41.8, "euribor3m": 4.864, "nr.employed": 5228.1}'
+          docker logs api
+          docker rm -f api

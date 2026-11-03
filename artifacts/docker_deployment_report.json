@@ -1,0 +1,12 @@
+{
+    "image": "bank-marketing-api:latest",
+    "image_size_mb": 723.7,
+    "health": "ok",
+    "model_version": 1,
+    "sample_prediction": {
+        "prediction_id": "f81a5a46-a6f5-4896-821e-470af5977643",
+        "probability": 0.2081,
+        "prediction": 0,
+        "label": "no"
+    }
+}

@@ -1,0 +1,9 @@
+services:
+  bank-api:
+    build: .
+    image: bank-marketing-api:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs:/app/logs      # prediction logs stay on the host for Lab 12
+    restart: unless-stopped

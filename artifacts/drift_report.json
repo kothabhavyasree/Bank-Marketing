@@ -1,0 +1,137 @@
+{
+    "schema_valid": true,
+    "reference_rows": 32940,
+    "current_rows": 3000,
+    "drifted_features": [
+        "emp.var.rate",
+        "euribor3m",
+        "nr.employed",
+        "cons.conf.idx",
+        "campaign",
+        "age",
+        "contact"
+    ],
+    "drift_share": 0.368,
+    "prediction_psi": 3.6309,
+    "mean_probability": {
+        "reference": 0.3759,
+        "current": 0.5361
+    },
+    "retrain_required": true,
+    "features": [
+        {
+            "feature": "emp.var.rate",
+            "psi": 11.4307,
+            "drift": true,
+            "ks_pvalue": 0.0
+        },
+        {
+            "feature": "euribor3m",
+            "psi": 6.885,
+            "drift": true,
+            "ks_pvalue": 0.0
+        },
+        {
+            "feature": "nr.employed",
+            "psi": 6.0295,
+            "drift": true,
+            "ks_pvalue": 0.0
+        },
+        {
+            "feature": "cons.conf.idx",
+            "psi": 3.1818,
+            "drift": true,
+            "ks_pvalue": 0.0
+        },
+        {
+            "feature": "campaign",
+            "psi": 1.0562,
+            "drift": true,
+            "ks_pvalue": 0.0
+        },
+        {
+            "feature": "age",
+            "psi": 0.2962,
+            "drift": true,
+            "ks_pvalue": 4.537171392249001e-137
+        },
+        {
+            "feature": "contact",
+            "psi": 0.2563,
+            "drift": true,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "job",
+            "psi": 0.0063,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "month",
+            "psi": 0.0044,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "cons.price.idx",
+            "psi": 0.0041,
+            "drift": false,
+            "ks_pvalue": 0.8319352015673127
+        },
+        {
+            "feature": "education",
+            "psi": 0.0037,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "marital",
+            "psi": 0.0021,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "poutcome",
+            "psi": 0.002,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "previous",
+            "psi": 0.0016,
+            "drift": false,
+            "ks_pvalue": 0.9972780607314801
+        },
+        {
+            "feature": "loan",
+            "psi": 0.0008,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "day_of_week",
+            "psi": 0.0008,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "housing",
+            "psi": 0.0005,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "default",
+            "psi": 0.0002,
+            "drift": false,
+            "ks_pvalue": null
+        },
+        {
+            "feature": "pdays",
+            "psi": 0.0,
+            "drift": false,
+            "ks_pvalue": 0.9994207498069347
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+[
+    {
+        "stage": "Lab 5  data validation + preprocessing",
+        "status": "PASSED",
+        "seconds": 3.4
+    },
+    {
+        "stage": "Lab 6  train, register, promote",
+        "status": "PASSED",
+        "seconds": 22.5
+    },
+    {
+        "stage": "Lab 7  export + serve",
+        "status": "PASSED",
+        "seconds": 4.4
+    },
+    {
+        "stage": "Lab 8  automated tests (quality gate)",
+        "status": "PASSED",
+        "seconds": 2.8
+    },
+    {
+        "stage": "Lab 9  docker build + run",
+        "status": "SKIPPED"
+    },
+    {
+        "stage": "Lab 10 drift detection",
+        "status": "PASSED",
+        "seconds": 5.0
+    },
+    {
+        "stage": "Lab 11 drift-triggered retraining",
+        "status": "PASSED",
+        "seconds": 12.1
+    },
+    {
+        "stage": "Lab 8  re-test the new champion",
+        "status": "PASSED",
+        "seconds": 2.8
+    },
+    {
+        "stage": "Lab 12 production monitoring",
+        "status": "PASSED",
+        "seconds": 11.5
+    }
+]

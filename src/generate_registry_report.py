@@ -1,6 +1,7 @@
 import os
 import json
 import mlflow
+import common
 from mlflow.tracking import MlflowClient
 
 def generate_registry_report():

@@ -1,0 +1,31 @@
+# Central settings used by Labs 7-13
+project:
+  raw_data: data/raw/bank-additional-full.csv
+  registered_model: Bank_Marketing_Production_Model
+  experiment: Bank_Marketing_Prediction
+  decision_metric: recall
+
+serving:
+  inference_pipeline: models/inference_pipeline.pkl
+  model_info: models/model_info.json
+  prediction_log: logs/predictions.jsonl
+  threshold: 0.5
+
+quality_gate:            # Lab 8 tests / Lab 13 CI fail if the production model drops below these
+  min_recall: 0.55
+  min_roc_auc: 0.75
+
+drift:
+  current_batch: data/drift/current_batch.csv     # simulated new month of labelled campaign data
+  holdout_fraction: 0.3       # part of the new batch kept aside to evaluate retraining
+  psi_threshold: 0.2          # PSI > 0.2 = significant drift
+  ks_pvalue: 0.05
+  drift_share_trigger: 0.25   # retrain if >25% of features drift
+
+monitoring:
+  window_size: 500            # predictions per monitoring window
+  max_positive_rate: 0.40
+  min_positive_rate: 0.05
+  max_latency_ms: 200
+  min_window_recall: 0.50
+  psi_alert: 0.30             # higher than the batch threshold: 500-row windows are noisy

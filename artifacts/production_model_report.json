@@ -1,0 +1,25 @@
+{
+    "registry_status": "READY_FOR_DEPLOYMENT",
+    "model_lineage": {
+        "registered_name": "Bank_Marketing_Production_Model",
+        "version": 1,
+        "current_stage": "Production",
+        "run_id": "5f4a9213e25b4627b383936ee008dbce",
+        "artifact_uri": "models:/m-74ba640c5ad547db9736d9a7db35017b"
+    },
+    "performance_metrics": {
+        "recall": 0.6400862068965517,
+        "f1_score": 0.4968632371392723,
+        "roc_auc": 0.813175629447181,
+        "accuracy": 0.8539339485186984,
+        "precision": 0.40601503759398494
+    },
+    "hyperparameters": {
+        "n_estimators": "100",
+        "max_depth": "10",
+        "random_state": "42",
+        "class_weight": "balanced",
+        "model_family": "RandomForest"
+    },
+    "preprocessing_dependency": "models/preprocessor.pkl"
+}

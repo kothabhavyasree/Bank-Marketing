@@ -1,5 +1,7 @@
 import os
+import sys
 import numpy as np
+import common
 import mlflow
 import mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
@@ -21,23 +23,15 @@ def train_and_register_model():
         print("[ERROR] Processed data not found. Please run the Lab 5 pipeline first.")
         return
     
-    # 3. Define Model Parameters
-    # params = {
-    #     "n_estimators": 100,
-    #     "max_depth": 10,
-    #     "random_state": 42,
-    #     "class_weight": "balanced"
-    # }
-
-    params = {
-        "n_estimators": 200,
-        "max_depth": 15,
-        "random_state": 42,
-        "class_weight": "balanced"
+    # 3. Define Model Parameters (pass "v1" or "v2" on the command line; default v2)
+    versions = {
+        "v1": {"n_estimators": 100, "max_depth": 10, "random_state": 42, "class_weight": "balanced"},
+        "v2": {"n_estimators": 200, "max_depth": 15, "random_state": 42, "class_weight": "balanced"},
     }
-    
-    # with mlflow.start_run(run_name="RandomForest_Registry_V1") as run:
-    with mlflow.start_run(run_name="RandomForest_Registry_V2") as run:
+    tag = (sys.argv[1] if len(sys.argv) > 1 else "v2").lower()
+    params = versions[tag]
+
+    with mlflow.start_run(run_name=f"RandomForest_Registry_{tag.upper()}") as run:
         # Log parameters
         mlflow.log_params(params)
         mlflow.log_param("model_family", "RandomForest")
@@ -73,6 +67,7 @@ def train_and_register_model():
             # artifact_path="random_forest_model",
             # artifact_path is deprecated in newer MLflow versions
             name="random_forest_model",
+            serialization_format="cloudpickle",  # newer MLflow defaults to skops, which rejects tree models
             registered_model_name="Bank_Marketing_Production_Model" # Creates the registry entry
         )
         

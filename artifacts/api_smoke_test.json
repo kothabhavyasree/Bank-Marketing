@@ -1,0 +1,27 @@
+{
+    "checks": {
+        "health": true,
+        "model_info": true,
+        "predict": true,
+        "predict_batch": true,
+        "rejects_invalid_input": true
+    },
+    "model_info": {
+        "model_name": "Bank_Marketing_Production_Model",
+        "version": 1,
+        "run_id": "5f4a9213e25b4627b383936ee008dbce",
+        "metrics": {
+            "accuracy": 0.8539339485186984,
+            "precision": 0.40601503759398494,
+            "recall": 0.6400862068965517,
+            "f1_score": 0.4968632371392723,
+            "roc_auc": 0.813175629447181
+        }
+    },
+    "example_response": {
+        "prediction_id": "2e083fa1-0ade-458e-ac8d-e62dc7057390",
+        "probability": 0.2081,
+        "prediction": 0,
+        "label": "no"
+    }
+}

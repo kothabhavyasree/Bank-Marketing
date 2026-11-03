@@ -1,0 +1,39 @@
+{
+    "champion_version": 1,
+    "champion": {
+        "original_test": {
+            "accuracy": 0.8539339485186984,
+            "precision": 0.40601503759398494,
+            "recall": 0.6400862068965517,
+            "f1_score": 0.4968632371392723,
+            "roc_auc": 0.813175629447181
+        },
+        "drift_holdout": {
+            "accuracy": 0.58,
+            "precision": 0.1891891891891892,
+            "recall": 0.8235294117647058,
+            "f1_score": 0.3076923076923077,
+            "roc_auc": 0.7747555162415845
+        }
+    },
+    "challenger": {
+        "original_test": {
+            "accuracy": 0.8544196211753279,
+            "precision": 0.4070006863417982,
+            "recall": 0.6390086206896551,
+            "f1_score": 0.49727463312368975,
+            "roc_auc": 0.8110397733707038
+        },
+        "drift_holdout": {
+            "accuracy": 0.8055555555555556,
+            "precision": 0.31840796019900497,
+            "recall": 0.6274509803921569,
+            "f1_score": 0.42244224422442245,
+            "roc_auc": 0.782642881714089
+        }
+    },
+    "rows": {
+        "combined_train": 35040,
+        "drift_holdout": 900
+    }
+}

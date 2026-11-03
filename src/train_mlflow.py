@@ -1,4 +1,5 @@
 import os
+import common
 import joblib
 import numpy as np
 import matplotlib
@@ -89,7 +90,7 @@ def train_and_track(run_name="RandomForest_Baseline", params=None):
             mlflow.log_artifact('data/processed/dataset_metadata.json', artifact_path="metadata")
 
         # 8. Log Model Artifact
-        mlflow.sklearn.log_model(sk_model=model, name="model")
+        mlflow.sklearn.log_model(sk_model=model, name="model", serialization_format="cloudpickle")
 
         # Save local backup
         os.makedirs('models', exist_ok=True)
